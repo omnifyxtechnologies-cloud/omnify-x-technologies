@@ -14,12 +14,12 @@ export function VentureCards({ id = false }: { id?: boolean }) {
   const items = [
     {
       anchor: "temp-number", n: "Venture 01", title: "Omnify X Temp Number Marketplace",
-      text: "An upcoming marketplace focused on temporary phone number services.",
+      text: "A marketplace for temporary phone number services.",
       visual: <TempNumberVisual />, subject: "Omnify X Temp Number Marketplace - Stay updated",
     },
     {
       anchor: "cafe-workspace", n: "Venture 02", title: "Omnify X Cafe & Workspace",
-      text: "An upcoming cafe and coworking space designed for freelancers, entrepreneurs, remote workers, and creative professionals.",
+      text: "A cafe and coworking space for freelancers, entrepreneurs, remote workers and creatives.",
       visual: <CafeVisual />, subject: "Omnify X Cafe & Workspace - Stay updated",
     },
   ];

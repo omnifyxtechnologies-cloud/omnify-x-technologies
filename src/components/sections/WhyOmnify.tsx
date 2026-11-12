@@ -1,30 +1,28 @@
 import { Layers, Users, Cpu, TrendingUp } from "lucide-react";
 import { Reveal } from "../ui/Reveal";
 import { SectionHeading } from "../ui/SectionHeading";
+import { GlowCard } from "../ui/GlowCard";
 
 const items = [
-  { icon: Layers, t: "Multiple Business Solutions Under One Roof", d: "E-commerce, consultancy and new ventures working together, so entrepreneurs don't have to piece together separate providers." },
-  { icon: Users, t: "Entrepreneur-Focused Approach", d: "Every service is shaped around the practical needs of people starting and running their own businesses." },
-  { icon: Cpu, t: "Technology-Driven Operations", d: "Modern tools and workflows sit behind how we research, set up and manage business operations." },
-  { icon: TrendingUp, t: "Growth-Oriented Business Mindset", d: "We think beyond the first launch, with an eye on how a business can develop and expand over time." },
+  { icon: Layers, t: "Everything Under One Roof", d: "E-commerce, consultancy and ventures together." },
+  { icon: Users, t: "Entrepreneur-Focused", d: "Built around how founders actually work." },
+  { icon: Cpu, t: "Technology-Driven", d: "Modern tools behind every operation." },
+  { icon: TrendingUp, t: "Growth Mindset", d: "We think beyond the first launch." },
 ];
 
 export function WhyOmnify() {
   return (
-    <section className="relative overflow-hidden bg-charcoal py-20 text-white sm:py-28">
-      <div className="grid-bg-dark absolute inset-0 opacity-50" aria-hidden />
-      <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-emerald/15 blur-3xl" aria-hidden />
-      <div className="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-violet/20 blur-3xl" aria-hidden />
-      <div className="container-x relative">
-        <SectionHeading dark eyebrow="Why Omnify X?" title="A partner built around how entrepreneurs actually work." />
-        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
+    <section className="bg-paper py-20 sm:py-28">
+      <div className="container-x">
+        <SectionHeading eyebrow="Why Omnify X?" title="Built for builders." center />
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {items.map(({ icon: I, t, d }, i) => (
-            <Reveal key={t} delay={i * 0.07} className="bg-charcoal">
-              <div className="group h-full p-8 transition-colors duration-300 hover:bg-charcoal-2 sm:p-10">
-                <span className="grid h-12 w-12 place-items-center rounded-xl bg-white/5 text-emerald ring-1 ring-white/10 transition-colors group-hover:bg-emerald group-hover:text-charcoal"><I size={22} aria-hidden /></span>
-                <h3 className="mt-6 text-xl font-semibold tracking-tight">{t}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/65 sm:text-base">{d}</p>
-              </div>
+            <Reveal key={t} delay={i * 0.08}>
+              <GlowCard className="group h-full rounded-2xl border border-line bg-white p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-charcoal/10">
+                <span className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-emerald to-violet text-white shadow-lg shadow-violet/20 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110"><I size={26} aria-hidden /></span>
+                <h3 className="mt-6 text-lg font-semibold text-charcoal">{t}</h3>
+                <p className="mt-2 text-sm text-muted">{d}</p>
+              </GlowCard>
             </Reveal>
           ))}
         </div>

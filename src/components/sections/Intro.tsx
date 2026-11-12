@@ -1,36 +1,31 @@
+import { ShoppingCart, Globe2, Rocket } from "lucide-react";
 import { Reveal } from "../ui/Reveal";
 
 const pillars = [
-  { n: "01", t: "E-commerce", d: "Marketplace and storefront solutions across Amazon, Walmart, eBay, Etsy and Shopify." },
-  { n: "02", t: "Business Consultancy", d: "Setup and registration guidance for entrepreneurs forming a US LLC or a UK LTD." },
-  { n: "03", t: "Emerging Ventures", d: "New technology and workspace ventures that extend the Omnify X group." },
+  { icon: ShoppingCart, t: "E-commerce", d: "Sell on the big marketplaces." },
+  { icon: Globe2, t: "Consultancy", d: "Set up a company in the US or UK." },
+  { icon: Rocket, t: "Ventures", d: "New ideas, coming soon." },
 ];
 
 export function Intro() {
   return (
     <section className="bg-white py-20 sm:py-28">
-      <div className="container-x grid gap-14 lg:grid-cols-12">
-        <Reveal className="lg:col-span-6">
+      <div className="container-x text-center">
+        <Reveal>
           <p className="eyebrow">Who we are</p>
-          <h2 className="h-section mt-3 text-charcoal">One Vision. <span className="grad-text">Multiple Business Opportunities.</span></h2>
-          <p className="mt-6 text-base leading-relaxed text-muted sm:text-lg">
-            Omnify X Technologies is a multi-venture company operating across e-commerce, business consultancy, and emerging technology and workspace ventures. Each division is built around the same idea: give entrepreneurs the structure, guidance and tools they need to start with confidence and grow with intent.
-          </p>
+          <h2 className="h-section mx-auto mt-3 max-w-3xl text-charcoal">One Vision. <span className="grad-anim">Multiple Business Opportunities.</span></h2>
+          <p className="mx-auto mt-5 max-w-xl text-base text-muted sm:text-lg">A multi-venture company for entrepreneurs who want to build, operate and grow.</p>
         </Reveal>
-        <div className="lg:col-span-6">
-          <ul className="divide-y divide-line border-y border-line">
-            {pillars.map((p, i) => (
-              <Reveal key={p.n} delay={i * 0.08}>
-                <li className="group flex gap-6 py-6">
-                  <span className="w-7 shrink-0 text-sm font-semibold text-emerald-deep">{p.n}</span>
-                  <div>
-                    <h3 className="text-lg font-semibold text-charcoal transition-colors group-hover:text-violet-deep">{p.t}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted">{p.d}</p>
-                  </div>
-                </li>
-              </Reveal>
-            ))}
-          </ul>
+        <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-3">
+          {pillars.map(({ icon: I, t, d }, i) => (
+            <Reveal key={t} delay={i * 0.1}>
+              <div className="group rounded-2xl border border-line bg-paper p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-emerald/50 hover:bg-white hover:shadow-xl hover:shadow-charcoal/5">
+                <span className="grid h-12 w-12 place-items-center rounded-xl bg-white text-emerald-deep shadow-sm ring-1 ring-line transition-all duration-300 group-hover:scale-110 group-hover:bg-emerald group-hover:text-white"><I size={22} /></span>
+                <h3 className="mt-5 text-lg font-semibold text-charcoal">{t}</h3>
+                <p className="mt-1 text-sm text-muted">{d}</p>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

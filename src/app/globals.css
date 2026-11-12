@@ -53,3 +53,54 @@ body { background: #fff; color: var(--color-ink); font-family: var(--font-sans);
 .floaty { animation: floaty 7s ease-in-out infinite; }
 @keyframes pulse-ring { 0% { transform: scale(.9); opacity: .6 } 100% { transform: scale(1.6); opacity: 0 } }
 .pulse-ring { animation: pulse-ring 2.4s ease-out infinite; }
+
+/* ---------- Motion & energy ---------- */
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }
+.marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+.marquee-track.fast { animation-duration: 26s; }
+.marquee-track.rev { animation-direction: reverse; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { transform-origin: 200px 200px; animation: spin-slow 48s linear infinite; }
+.spin-rev { transform-origin: 200px 200px; animation: spin-slow 70s linear infinite reverse; }
+
+@keyframes drift { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(40px,-30px,0) scale(1.12); } }
+.drift { animation: drift 14s ease-in-out infinite; }
+.drift-b { animation: drift 18s ease-in-out infinite reverse; }
+
+@keyframes gradient-pan { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+.grad-anim { background: linear-gradient(100deg, #00c48f, #9146e8, #00c48f); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gradient-pan 6s linear infinite; }
+
+@keyframes shine { 0% { transform: translateX(-120%) skewX(-20deg); } 100% { transform: translateX(260%) skewX(-20deg); } }
+.btn-shine { position: relative; overflow: hidden; }
+.btn-shine::after { content: ""; position: absolute; inset: 0; width: 40%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-120%) skewX(-20deg); }
+.btn-shine:hover::after { animation: shine .9s ease; }
+
+.glow-card { position: relative; isolation: isolate; overflow: hidden; }
+.glow-card::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .35s; background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(0,196,143,.18), rgba(145,70,232,.08) 40%, transparent 65%); }
+.glow-card:hover::before { opacity: 1; }
+
+.text-outline { color: transparent; -webkit-text-stroke: 1.5px rgba(32,38,47,.28); }
+.text-outline-light { color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.28); }
+
+@keyframes ping-soft { 0% { box-shadow: 0 0 0 0 rgba(0,196,143,.5); } 100% { box-shadow: 0 0 0 14px rgba(0,196,143,0); } }
+.ping-soft { animation: ping-soft 2s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .spin-slow, .spin-rev, .drift, .drift-b, .grad-anim, .floaty { animation: none !important; }
+}
+
+/* ---------- Hero dashboard animations ---------- */
+@keyframes tick-in { 0%,8% { opacity: 0; transform: scale(.3); } 18%,86% { opacity: 1; transform: scale(1); } 96%,100% { opacity: 0; transform: scale(.3); } }
+.tick { animation: tick-in 7s ease-in-out infinite; }
+@keyframes pop-toast { 0%,8% { opacity: 0; transform: translateY(18px) scale(.9); } 16%,70% { opacity: 1; transform: translateY(0) scale(1); } 80%,100% { opacity: 0; transform: translateY(-10px) scale(.95); } }
+.pop-toast { animation: pop-toast 6s ease-in-out infinite; }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+.skel { background: linear-gradient(90deg, rgba(32,38,47,.07) 25%, rgba(32,38,47,.14) 50%, rgba(32,38,47,.07) 75%); background-size: 200% 100%; animation: shimmer 2.4s linear infinite; }
+.skel-w { background: linear-gradient(90deg, rgba(255,255,255,.3) 25%, rgba(255,255,255,.6) 50%, rgba(255,255,255,.3) 75%); background-size: 200% 100%; animation: shimmer 2.4s linear infinite; }
+@keyframes bar-rise { 0%,100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+.bar-rise { transform-origin: bottom; animation: bar-rise 3.2s ease-in-out infinite; }
+@keyframes cart-bump { 0%,60%,100% { transform: scale(1); } 70% { transform: scale(1.35); } 80% { transform: scale(1); } }
+.cart-bump { animation: cart-bump 4s ease-in-out infinite; }

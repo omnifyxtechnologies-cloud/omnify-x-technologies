@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 type Variant = "primary" | "secondary" | "ghost" | "light";
 const base =
-  "group inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-sm font-semibold transition-all duration-300 focus-visible:outline-offset-2";
+  "btn-shine group inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-sm font-semibold transition-all duration-300 focus-visible:outline-offset-2";
 const styles: Record<Variant, string> = {
   primary: "bg-charcoal text-white hover:bg-emerald-deep hover:shadow-lg hover:shadow-emerald/25",
   secondary: "border border-charcoal/20 bg-white text-charcoal hover:border-violet hover:text-violet-deep",

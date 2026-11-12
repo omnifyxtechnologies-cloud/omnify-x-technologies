@@ -5,6 +5,7 @@ export type Service = {
   id: string;
   title: string;
   short: string;
+  tag: string;
   icon: LucideIcon;
   division: "ecommerce" | "consultancy";
   intro: string;
@@ -14,6 +15,7 @@ export type Service = {
 export const SERVICES: Service[] = [
   {
     id: "amazon-fba",
+    tag: "Source. Sell. Scale.",
     title: "Amazon FBA Wholesale",
     short: "A wholesale model built on sourcing, brand research and FBA support.",
     icon: Boxes,
@@ -24,6 +26,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "walmart",
+    tag: "Walmart marketplace, 2-step model.",
     title: "Walmart 2-Step Dropshipping",
     short: "Walmart marketplace operations using the 2-step dropshipping model.",
     icon: Store,
@@ -34,6 +37,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "ebay",
+    tag: "Setup, listings, operations.",
     title: "eBay Dropshipping",
     short: "Store setup, product research and listing management for eBay.",
     icon: ShoppingBag,
@@ -43,6 +47,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "etsy",
+    tag: "Create and sell digital products.",
     title: "Etsy Digital Products",
     short: "Research, create and sell digital products through an optimized Etsy shop.",
     icon: Sparkles,
@@ -52,6 +57,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "shopify",
+    tag: "Beautiful, responsive stores.",
     title: "Shopify Store Designing",
     short: "Professional, responsive Shopify storefronts designed around your brand.",
     icon: LayoutTemplate,
@@ -67,6 +73,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "us-llc",
+    tag: "Launch a US company.",
     title: "US LLC Formation",
     short: "Registration assistance and setup guidance for a United States LLC.",
     icon: Building2,
@@ -76,6 +83,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "uk-ltd",
+    tag: "Launch a UK company.",
     title: "UK LTD Formation",
     short: "Company formation assistance and registration guidance for the United Kingdom.",
     icon: Landmark,
