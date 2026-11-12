@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { ServiceDetails } from "@/components/ServiceDetails";
 import { CTABand } from "@/components/sections/CTABand";
-import { Button } from "@/components/ui/Button";
+import { ShopifyWork } from "@/components/sections/ShopifyWork";
 import { ECOM } from "@/lib/services";
 
 export const metadata: Metadata = {
@@ -21,6 +21,7 @@ export default function Page() {
         </div>
       </PageHero>
       <div className="container-x py-16 sm:py-24"><ServiceDetails services={ECOM} /></div>
+      <ShopifyWork />
       <CTABand title="Ready to start selling online?" text="Tell us which marketplace or store model you are interested in and we will get back to you." />
     </>
   );

@@ -21,7 +21,7 @@ export function Footer() {
         <nav aria-label="Quick links" className="lg:col-span-2">
           <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-charcoal">Company</h3>
           <ul className="mt-5 space-y-3">
-            {[["Home", "/"], ["About Us", "/about/"], ["E-commerce", "/ecommerce/"], ["Consultancy", "/consultancy/"], ["Our Ventures", "/ventures/"], ["Contact Us", "/contact/"]].map(([l, h]) => (
+            {[["Home", "/"], ["About Us", "/about/"], ["E-commerce", "/ecommerce/"], ["Software", "/software/"], ["Consultancy", "/consultancy/"], ["Our Ventures", "/ventures/"], ["Contact Us", "/contact/"]].map(([l, h]) => (
               <li key={h}><Link href={h} className={col}>{l}</Link></li>
             ))}
           </ul>
@@ -31,6 +31,8 @@ export function Footer() {
           <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-charcoal">Services</h3>
           <ul className="mt-5 space-y-3">
             {ECOM.map((s) => <li key={s.id}><Link href={`/ecommerce/#${s.id}`} className={col}>{s.title}</Link></li>)}
+            <li><Link href="/software/#portals" className={col}>SaaS Management Portals</Link></li>
+            <li><Link href="/software/#web-development" className={col}>Web Development</Link></li>
             {CONSULT.map((s) => <li key={s.id}><Link href={`/consultancy/#${s.id}`} className={col}>{s.title}</Link></li>)}
           </ul>
         </nav>

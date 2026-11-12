@@ -1,15 +1,14 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Bell, Building2, Check, ShoppingCart, TrendingUp } from "lucide-react";
+import { Bell, Building2, Check, TrendingUp } from "lucide-react";
 import { Button } from "../ui/Button";
 
-function Skel({ w, h = 8, light = false, className = "" }: { w: number | string; h?: number; light?: boolean; className?: string }) {
-  return <div className={`${light ? "skel-w" : "skel"} rounded-full ${className}`} style={{ width: w, height: h }} />;
-}
-
 const W = 520;
-const H = 500;
+const H = 545;
+const LINE = "M24 196 C 60 184, 84 190, 118 160 S 178 150, 214 118 S 280 116, 316 82 S 380 70, 412 40 S 456 30, 480 18";
+
+const CHANNELS = ["Amazon", "Walmart", "eBay", "Etsy", "Shopify"];
 
 function HeroDashboard({ reduce }: { reduce: boolean }) {
   const wrap = useRef<HTMLDivElement>(null);
@@ -22,82 +21,87 @@ function HeroDashboard({ reduce }: { reduce: boolean }) {
     setScale(Math.min(1, el.clientWidth / W));
     return () => ro.disconnect();
   }, []);
-  const enter = (d: number) => reduce ? {} : { initial: { opacity: 0, y: 30, scale: 0.94 }, animate: { opacity: 1, y: 0, scale: 1 }, transition: { duration: 0.7, delay: d, ease: [0.22, 1, 0.36, 1] as const } };
-  const card = "absolute rounded-2xl border border-line bg-white shadow-2xl shadow-charcoal/10";
-  const tiles = ["from-emerald/40 to-emerald/10", "from-violet/40 to-violet/10", "from-emerald/30 to-violet/20"];
+  const enter = (d: number) => reduce ? {} : { initial: { opacity: 0, y: 24, scale: 0.96 }, animate: { opacity: 1, y: 0, scale: 1 }, transition: { duration: 0.8, delay: d, ease: [0.22, 1, 0.36, 1] as const } };
+  const glass = "absolute rounded-2xl border border-white/10 bg-white/[0.06] backdrop-blur-xl";
   return (
     <div ref={wrap} className="relative mx-auto w-full max-w-[32.5rem]" style={{ height: H * scale }} aria-hidden>
-      <div className="drift absolute inset-[8%] rounded-full bg-gradient-to-br from-emerald/25 via-transparent to-violet/30 blur-3xl" />
+      <div className="drift absolute inset-[4%] rounded-full bg-gradient-to-br from-emerald/30 via-transparent to-violet/40 blur-3xl" />
       <div className="absolute left-0 top-0 origin-top-left" style={{ width: W, height: H, transform: `scale(${scale})` }}>
 
-        {/* Ventures chip */}
-        <motion.div {...enter(1.2)} className="absolute left-5 top-3 z-20">
-          <div className="floaty flex items-center gap-2 rounded-full bg-charcoal px-4 py-2 text-xs font-semibold text-white shadow-xl">
-            <span className="ping-soft h-2 w-2 rounded-full bg-emerald" /> New ventures · Coming soon
-          </div>
-        </motion.div>
+        {/* Main console */}
+        <motion.div {...enter(0.15)} className="absolute z-10 overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br from-[#262d38] via-charcoal to-[#171b22] shadow-2xl shadow-charcoal/40" style={{ left: 8, top: 40, width: 504, height: 400 }}>
+          <div className="absolute inset-0 grid-bg-dark opacity-40" />
+          <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-violet/30 blur-3xl" />
+          <div className="absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-emerald/25 blur-3xl" />
 
-        {/* Store window */}
-        <motion.div {...enter(0.2)} className={`${card} z-10 overflow-hidden`} style={{ left: 18, top: 62, width: 372, height: 310 }}>
-          <div className="flex items-center gap-2 border-b border-line bg-paper px-4 py-3">
-            <span className="h-2.5 w-2.5 rounded-full bg-red-300" /><span className="h-2.5 w-2.5 rounded-full bg-amber-300" /><span className="h-2.5 w-2.5 rounded-full bg-emerald/70" />
-            <div className="mx-auto flex h-6 w-44 items-center justify-center rounded-full bg-white text-[10px] font-medium text-muted ring-1 ring-line">yourstore.com</div>
-            <span className="cart-bump grid h-6 w-6 place-items-center rounded-full bg-charcoal text-white"><ShoppingCart size={12} /></span>
-          </div>
-          <div className="p-4">
-            <div className="relative h-[92px] overflow-hidden rounded-xl bg-gradient-to-r from-emerald via-emerald-deep to-violet p-4">
-              <div className="absolute -right-6 -top-8 h-28 w-28 rounded-full bg-white/15" />
-              <Skel w={130} h={10} light /><Skel w={90} h={8} light className="mt-2" />
-              <div className="mt-3 inline-block rounded-full bg-white px-3 py-1 text-[10px] font-semibold text-charcoal">Shop now</div>
+          <div className="relative flex items-center justify-between px-6 pt-5">
+            <div className="flex items-center gap-2.5">
+              <span className="grid h-8 w-8 place-items-center rounded-xl bg-gradient-to-br from-emerald to-violet text-white"><TrendingUp size={16} /></span>
+              <div className="leading-tight"><p className="text-[11px] font-semibold text-white">Business overview</p><p className="text-[9px] text-white/45">All channels · Live</p></div>
             </div>
-            <div className="mt-3 grid grid-cols-3 gap-3">
-              {tiles.map((t, i) => (
-                <div key={i}>
-                  <div className={`h-[76px] rounded-xl bg-gradient-to-br ${t}`} />
-                  <Skel w="80%" h={7} className="mt-2" /><Skel w="45%" h={7} className="mt-1.5" />
+            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[9px] font-semibold text-emerald"><span className="ping-soft h-1.5 w-1.5 rounded-full bg-emerald" /> Growing</div>
+          </div>
+
+          {/* Area chart */}
+          <svg viewBox="0 0 504 230" className="relative mt-3 w-full overflow-visible" style={{ height: 230 }}>
+            <defs>
+              <linearGradient id="hz-line" x1="0" x2="1"><stop offset="0" stopColor="#00c48f" /><stop offset="1" stopColor="#b57bff" /></linearGradient>
+              <linearGradient id="hz-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#9146e8" stopOpacity=".38" /><stop offset="1" stopColor="#00c48f" stopOpacity="0" /></linearGradient>
+              <filter id="hz-glow"><feGaussianBlur stdDeviation="4" /></filter>
+            </defs>
+            {[40, 90, 140, 190].map((y) => <line key={y} x1="24" x2="480" y1={y} y2={y} stroke="#fff" strokeOpacity=".06" strokeDasharray="3 6" />)}
+            <path d={`${LINE} L 480 214 L 24 214 Z`} fill="url(#hz-fill)" className="hz-fill" />
+            <path d={LINE} fill="none" stroke="url(#hz-line)" strokeWidth="6" strokeLinecap="round" opacity=".5" filter="url(#hz-glow)" />
+            <motion.path d={LINE} fill="none" stroke="url(#hz-line)" strokeWidth="2.6" strokeLinecap="round"
+              {...(reduce ? {} : { initial: { pathLength: 0 }, animate: { pathLength: 1 }, transition: { duration: 2.2, delay: 0.7, ease: "easeInOut" } })} />
+            {!reduce && (
+              <circle r="5" fill="#fff" stroke="#00c48f" strokeWidth="3">
+                <animateMotion dur="6s" repeatCount="indefinite" path={LINE} keyPoints="0;1;1" keyTimes="0;0.75;1" calcMode="linear" begin="2.8s" />
+              </circle>
+            )}
+          </svg>
+
+          {/* KPI tiles */}
+          <div className="relative mx-5 grid grid-cols-3 gap-3">
+            {[["Marketplaces", "from-emerald/50"], ["Stores", "from-violet/50"], ["Portals", "from-emerald/40"]].map(([t, c], i) => (
+              <div key={t} className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
+                <p className="text-[9px] font-medium uppercase tracking-wider text-white/45">{t}</p>
+                <div className="mt-3 flex h-7 items-end gap-1">
+                  {[0.4, 0.65, 0.5, 0.85, 0.7, 1].map((h, k) => (
+                    <span key={k} className={`bar-rise block w-full rounded-sm bg-gradient-to-t ${c} to-white/80`} style={{ height: `${h * 100}%`, animationDelay: `${(i * 6 + k) * 0.15}s` }} />
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </motion.div>
 
-        {/* Company setup checklist */}
-        <motion.div {...enter(0.5)} className="absolute z-20" style={{ left: 318, top: 20, width: 196 }}>
-          <div className={`floaty ${card} !relative p-4`} style={{ animationDelay: "0.6s" }}>
-            <div className="flex items-center gap-2 text-xs font-semibold text-charcoal"><span className="grid h-7 w-7 place-items-center rounded-lg bg-violet-soft text-violet-deep"><Building2 size={14} /></span> Company setup</div>
-            <ul className="mt-3 space-y-2.5">
-              {["Choose structure", "Register company", "Go live"].map((t, i) => (
-                <li key={t} className="flex items-center gap-2.5 text-[11px] font-medium text-charcoal">
-                  <span className="tick grid h-5 w-5 place-items-center rounded-full bg-emerald text-white" style={{ animationDelay: `${i * 0.9}s` }}><Check size={11} strokeWidth={3} /></span>
-                  {t}
+        {/* Channels chip rail */}
+        <motion.div {...enter(0.6)} className={`${glass} z-20 !border-white/15 !bg-charcoal/80 px-3 py-2.5 shadow-xl`} style={{ left: 40, top: 6 }}>
+          <div className="floaty flex items-center gap-2">
+            {CHANNELS.map((c) => <span key={c} className="rounded-full border border-white/10 bg-white/10 px-2.5 py-1 text-[9px] font-semibold text-white/85">{c}</span>)}
+          </div>
+        </motion.div>
+
+        {/* Company setup */}
+        <motion.div {...enter(0.9)} className="absolute z-20" style={{ left: 330, top: 420, width: 178 }}>
+          <div className="floaty rounded-2xl border border-line bg-white p-3.5 shadow-2xl shadow-charcoal/25" style={{ animationDelay: "0.8s" }}>
+            <div className="flex items-center gap-2 text-[11px] font-semibold text-charcoal"><span className="grid h-6 w-6 place-items-center rounded-lg bg-violet-soft text-violet-deep"><Building2 size={12} /></span> Company setup</div>
+            <ul className="mt-2.5 space-y-2">
+              {["US / UK structure", "Registered", "Live"].map((t, i) => (
+                <li key={t} className="flex items-center gap-2 text-[10px] font-medium text-charcoal">
+                  <span className="tick grid h-4 w-4 place-items-center rounded-full bg-emerald text-white" style={{ animationDelay: `${i * 0.9}s` }}><Check size={9} strokeWidth={3} /></span>{t}
                 </li>
               ))}
             </ul>
           </div>
         </motion.div>
 
-        {/* Growth chart */}
-        <motion.div {...enter(0.8)} className="absolute z-20" style={{ left: 0, top: 344, width: 238 }}>
-          <div className={`floaty ${card} !relative p-4`} style={{ animationDelay: "1.4s" }}>
-            <div className="flex items-center justify-between text-xs font-semibold text-charcoal">
-              <span className="flex items-center gap-2"><span className="grid h-7 w-7 place-items-center rounded-lg bg-emerald-soft text-emerald-deep"><TrendingUp size={14} /></span> Growth</span>
-              <span className="rounded-full bg-emerald-soft px-2 py-0.5 text-[10px] text-emerald-deep">Scaling</span>
-            </div>
-            <svg viewBox="0 0 200 70" className="mt-3 h-[70px] w-full overflow-visible">
-              {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-                <rect key={i} x={i * 29 + 4} y={70 - (14 + i * 7)} width="16" height={14 + i * 7} rx="3" fill="#00c48f" opacity=".18" className="bar-rise" style={{ animationDelay: `${i * 0.2}s` }} />
-              ))}
-              <motion.path d="M4 58 C 30 52, 48 54, 70 42 S 120 34, 140 22 S 180 8, 196 4" fill="none" stroke="#9146e8" strokeWidth="3" strokeLinecap="round"
-                {...(reduce ? {} : { initial: { pathLength: 0 }, animate: { pathLength: [0, 1, 1, 0] }, transition: { duration: 5, repeat: Infinity, times: [0, 0.5, 0.85, 1], ease: "easeInOut" } })} />
-            </svg>
-          </div>
-        </motion.div>
-
-        {/* New order toast */}
-        <div className="absolute z-30" style={{ left: 290, top: 384, width: 214 }}>
-          <div className="pop-toast flex items-center gap-3 rounded-2xl border border-line bg-white p-3.5 shadow-2xl shadow-charcoal/15">
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-emerald to-violet text-white"><Bell size={18} /></span>
-            <div className="leading-tight"><p className="text-xs font-semibold text-charcoal">New order received</p><p className="mt-0.5 text-[10px] text-muted">From your online store</p></div>
+        {/* Order toast */}
+        <div className="absolute z-30" style={{ left: 4, top: 440, width: 210 }}>
+          <div className="pop-toast flex items-center gap-3 rounded-2xl border border-line bg-white p-3 shadow-2xl shadow-charcoal/25">
+            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-emerald to-violet text-white"><Bell size={16} /></span>
+            <div className="leading-tight"><p className="text-[11px] font-semibold text-charcoal">New order received</p><p className="mt-0.5 text-[9px] text-muted">From your online store</p></div>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/sections/CTABand";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Founder } from "@/components/sections/Founder";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
@@ -35,6 +36,8 @@ export default function Page() {
           </Reveal>
         </div>
       </section>
+
+      <Founder />
 
       <section className="bg-paper py-20 sm:py-24">
         <div className="container-x grid gap-6 md:grid-cols-2">

@@ -10,6 +10,9 @@ import { Proof } from "@/components/sections/Proof";
 import { Journey } from "@/components/sections/Journey";
 import { UpcomingVentures } from "@/components/sections/UpcomingVentures";
 import { BigMarquee } from "@/components/sections/BigMarquee";
+import { SoftwareStrip } from "@/components/sections/SoftwareStrip";
+import { ShopifyWork } from "@/components/sections/ShopifyWork";
+import { Founder } from "@/components/sections/Founder";
 import { CTABand } from "@/components/sections/CTABand";
 
 export const metadata: Metadata = {
@@ -25,9 +28,12 @@ export default function Home() {
       <Intro />
       <Divisions />
       <ServicesGrid />
+      <ShopifyWork />
+      <SoftwareStrip />
       <Stats />
       <WhyOmnify />
       <Proof />
+      <Founder compact />
       <Journey />
       <UpcomingVentures />
       <BigMarquee />

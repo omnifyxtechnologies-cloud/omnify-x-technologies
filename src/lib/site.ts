@@ -24,6 +24,14 @@ export const NAV = [
     ],
   },
   {
+    label: "Software",
+    href: "/software/",
+    children: [
+      { label: "SaaS Management Portals", href: "/software/#portals" },
+      { label: "Web Development", href: "/software/#web-development" },
+    ],
+  },
+  {
     label: "Consultancy",
     href: "/consultancy/",
     children: [
